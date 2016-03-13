@@ -107,7 +107,7 @@ public class MyScripts : ScriptCollection
 }
 ```
 
-In the JSON section above, the sample object has _TestScript_ as the value for `Script`. By registering the collection, all of the methods in the Collection get added to a pool of possible functions to run. This feature is very mature yet, and I'm sure bugs exist. Use this at your own discretion. The input to the function name listed by the JSON will be the GameObject instance itself. If the types don't match, nothing will happen. 
+In the JSON section above, the sample object has _TestScript_ as the value for `Script`. By registering the collection, all of the methods in the Collection get added to a pool of possible functions to run. This feature is **not** very mature yet, and I'm sure bugs exist. Use this at your own discretion. The input to the function name listed by the JSON will be the GameObject instance itself. If the types don't match, nothing will happen. 
 
 You can add additional parameters to a script function, like 
 
