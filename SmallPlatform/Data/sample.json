@@ -1,0 +1,62 @@
+﻿{
+	"Name": "sample_level",
+	"Metadata": { },
+	"Objects": [
+
+		{
+			"Type": "SpriteObject",
+			"Id": "cloud-template",
+			"Data": {
+				"Position": "100, 200",
+				"MediaPath": "Content\\clouds",
+				"Omega": "0",
+				"Color": {"R": 255}
+			},
+			"Script": "SinMove"
+		},
+		{
+			"Type": "Geometry",
+			"Data": {
+				"Points": [ 
+					"50, 400",
+					"600, 400",
+					"600, 450",
+					"50, 450"
+				]
+			}
+		},
+		{
+			"Type": "Geometry",
+			"Data": {
+				"Points": [
+					"600, 150",
+					"750, 50",
+					"750, 450",
+					"600, 450"
+				]
+			}
+		},
+		{
+			"Type": "Geometry",
+			"Data": {
+				"Points": [
+					"200, 100",
+					"400, 100",
+					"400, 150",
+					"200, 150"
+				]
+			}
+		},
+		{
+			"Type": "Geometry",
+			"Data": {
+				"Points": [
+					"200, 300",
+					"500, 300",
+					"500, 350",
+					"200, 350"
+				]
+			}
+		}
+	]
+}
