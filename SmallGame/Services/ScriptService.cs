@@ -9,9 +9,13 @@ using System.Text;
 using System.Threading;
 using Microsoft.CSharp;
 using Microsoft.Xna.Framework;
+using SmallGame.GameObjects;
 
 namespace SmallGame.Services
 {
+    /// <summary>
+    /// The ScriptService is responsible for allowing GameObjects to run dynamic behavours at runtime. 
+    /// </summary>
     public interface IScriptService : IGameService
     {
         void RegisterCollection(ScriptCollection collection);

@@ -46,9 +46,7 @@
     </Compile>
     <Compile Include="Game1.cs" />
     <Compile Include="Levels\TestLevel.cs" />
-    <Compile Include="Objects\BasicObject.cs" />
     <Compile Include="Objects\Geometry.cs" />
-    <Compile Include="Objects\SpriteObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestGame.cs" />

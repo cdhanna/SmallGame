@@ -42,10 +42,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CoreGame.cs" />
+    <Compile Include="GameObjects\BasicObject.cs" />
+    <Compile Include="GameObjects\SpriteObject.cs" />
     <Compile Include="Services\GameServices.cs" />
     <Compile Include="DataLoader.cs" />
     <Compile Include="GameLevel.cs" />
-    <Compile Include="GameObject.cs" />
+    <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="GameObjectCollection.cs" />
     <Compile Include="IdFactory.cs" />
     <Compile Include="PrimitiveBatch.cs" />

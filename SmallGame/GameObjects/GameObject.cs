@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using SmallGame.Services;
 
-namespace SmallGame
+namespace SmallGame.GameObjects
 {
     public abstract class GameObject
     {

@@ -8,13 +8,36 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace SmallGame.Services
 {
-
+    /// <summary>
+    /// The RenderService allows GameObjects to customize their rendering process
+    /// </summary>
     public interface IRenderService : IGameService
     {
+        /// <summary>
+        /// Gets or Sets the EventHandler for the rendering point
+        /// </summary>
         EventHandler<RenderEventArgs> OnRender { get; set; }
+
+        /// <summary>
+        /// Gets or Sets the buffer clear color
+        /// </summary>
         Color ClearColor { get; set; }
+
+        /// <summary>
+        /// Configures the service
+        /// </summary>
+        /// <param name="spriteBatch">The spritebatch that will be used and passed to all subscribers</param>
+        /// <param name="primitiveBatch">The primitivebatch that will be used and passed to all subscribers</param>
         void Configure(SpriteBatch spriteBatch, PrimitiveBatch primitiveBatch);
+        
+        /// <summary>
+        /// Clears all subscribers of the OnRender event
+        /// </summary>
         void Empty();
+
+        /// <summary>
+        /// Invokes all subscribers of the OnRender event
+        /// </summary>
         void Render();
     }
 

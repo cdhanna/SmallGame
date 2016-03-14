@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SmallGame;
+using SmallGame.GameObjects;
 using SmallGame.Services;
 using SmallPlatform.Levels;
 using SmallPlatform.Objects;

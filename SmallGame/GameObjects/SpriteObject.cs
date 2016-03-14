@@ -8,9 +8,9 @@ using Microsoft.Xna.Framework.Graphics;
 using SmallGame;
 using SmallGame.Services;
 
-namespace SmallPlatform.Objects
+namespace SmallGame.GameObjects
 {
-    class SpriteObject : BasicObject
+    public class SpriteObject : BasicObject
     {
 
         public string MediaPath { get; set; }

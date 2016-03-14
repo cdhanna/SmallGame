@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using SmallGame;
+using SmallGame.GameObjects;
 using SmallGame.Services;
 using SmallPlatform.Objects;
 

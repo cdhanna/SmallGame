@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Design;
 using SmallGame;
 using SmallGame.Services;
 
-namespace SmallPlatform.Objects
+namespace SmallGame.GameObjects
 {
     public class BasicObject : GameObject
     {
