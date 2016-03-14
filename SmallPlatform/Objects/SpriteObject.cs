@@ -6,6 +6,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SmallGame;
+using SmallGame.Services;
 
 namespace SmallPlatform.Objects
 {
@@ -41,12 +42,12 @@ namespace SmallPlatform.Objects
 
         protected override void OnInit(CoreGameServices services)
         {
-            _tex = services.RequestService<ResourceService>().Load<Texture2D>(MediaPath);
+            _tex = services.ResourceService.Load<Texture2D>(MediaPath);
             if (!_offsetChanged)
             {
                 Offset = new Vector2(_tex.Width, _tex.Height) / 2;    
             }
-            services.RequestService<RenderService>().OnRender += Render;
+            services.RenderService.OnRender += Render;
 
             base.OnInit(services);
         }

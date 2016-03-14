@@ -1,12 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SmallGame
+namespace SmallGame.Services
 {
+
+    public interface IRenderService : CoreGameService
+    {
+        EventHandler<RenderEventArgs> OnRender { get; set; }
+        Color ClearColor { get; set; }
+        void Configure(SpriteBatch spriteBatch, PrimitiveBatch primitiveBatch);
+        void Empty();
+        void Render();
+    }
 
     public class RenderEventArgs : EventArgs
     {
@@ -21,7 +31,7 @@ namespace SmallGame
         }
     }
 
-    public class RenderService : CoreGameService
+    public class RenderService : IRenderService
     {
 
         public SpriteBatch SpriteBatch { get; set; }

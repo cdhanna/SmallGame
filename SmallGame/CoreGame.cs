@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SmallGame.Services;
 
 namespace SmallGame
 {
@@ -20,7 +21,12 @@ namespace SmallGame
         public CoreGameServices Services { get; private set; }
         public GameTime Time { get; private set; }
 
-        public ScriptService ScriptService { get { return Services.RequestService<ScriptService>(); } }
+        // ease of use accessors. 
+        public IScriptService ScriptService { get { return Services.ScriptService; } }
+        public IUpdateService UpdateService { get { return Services.UpdateService; } }
+        public IRenderService RenderService { get { return Services.RenderService; } }
+        public IResourceService ResourceService { get { return Services.ResourceService; } }
+
 
         public CoreGame()
         {
@@ -29,10 +35,10 @@ namespace SmallGame
             Services = new CoreGameServices();
 
 
-            Services.RegisterService(new ResourceService());
-            Services.RegisterService(new RenderService());
-            Services.RegisterService(new UpdateService());
-            Services.RegisterService(new ScriptService());
+            Services.RegisterService<IResourceService>(new ResourceService());
+            Services.RegisterService<IRenderService>(new RenderService());
+            Services.RegisterService<IUpdateService>(new UpdateService());
+            Services.RegisterService<IScriptService>(new ScriptService());
 
             ScriptService.RegisterParameterHandler(() => Time);
         }
@@ -50,8 +56,9 @@ namespace SmallGame
 
             
             Level.Objects.Manage(Services, g => g.Kill());
-            Services.RequestService<RenderService>().Empty();
-            Services.RequestService<UpdateService>().Empty();
+            RenderService.Empty();
+            UpdateService.Empty();
+
             Level = null;
         }
 
@@ -60,8 +67,9 @@ namespace SmallGame
             PrimitiveBatch = new PrimitiveBatch(GraphicsDevice);
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             
-            Services.RequestService<RenderService>().Configure(SpriteBatch, PrimitiveBatch);
-            Services.RequestService<ResourceService>().Configure(Content);
+            RenderService.Configure(SpriteBatch, PrimitiveBatch);
+            ResourceService.Configure(Content);
+
             base.Initialize();
         }
 
@@ -72,7 +80,7 @@ namespace SmallGame
                 Time = gameTime;
                 ScriptService.Update(Time);
 
-                Services.RequestService<UpdateService>().OnUpdate(this, new UpdateEventArgs(gameTime, Services));
+                UpdateService.Update(gameTime, Services);
                 Level.Objects.Manage(Services);
 
             }
@@ -85,7 +93,7 @@ namespace SmallGame
 
         protected override void Draw(GameTime gameTime)
         {
-            Services.RequestService<RenderService>().Render();
+            RenderService.Render();
             base.Draw(gameTime);
         }
     }

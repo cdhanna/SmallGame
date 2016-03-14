@@ -4,8 +4,16 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace SmallGame
+namespace SmallGame.Services
 {
+
+    public interface IUpdateService : CoreGameService
+    {
+        EventHandler<UpdateEventArgs> OnUpdate { get; set; }
+        void Update(GameTime time, CoreGameServices services);
+        void Empty();
+    }
+
     public class UpdateEventArgs : EventArgs
     {
         public GameTime GameTime { get; set; }
@@ -17,18 +25,24 @@ namespace SmallGame
             Services = services;
         }
     }
-    public class UpdateService : CoreGameService
+    public class UpdateService : IUpdateService
     {
         public EventHandler<UpdateEventArgs> OnUpdate { get; set; }
+
+        public UpdateService()
+        {
+            Empty();
+        }
 
         public void Empty()
         {
             OnUpdate = (sender, args) => { };
         }
 
-        public UpdateService()
+
+        public void Update(GameTime time, CoreGameServices services)
         {
-            OnUpdate = (sender, args) => { };
+            OnUpdate.Invoke(this, new UpdateEventArgs(time, services));
         }
     }
 }

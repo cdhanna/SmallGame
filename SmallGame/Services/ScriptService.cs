@@ -10,9 +10,19 @@ using System.Threading;
 using Microsoft.CSharp;
 using Microsoft.Xna.Framework;
 
-namespace SmallGame
+namespace SmallGame.Services
 {
-    public class ScriptService : CoreGameService
+    public interface IScriptService : CoreGameService
+    {
+        void RegisterCollection(ScriptCollection collection);
+        void RegisterParameterHandler<P>(Func<P> fetcher);
+        void Run(string scriptName, GameObject gob);
+        void Update(GameTime time);
+        void LoadAndWatch(string scriptPath, Action onLoad=null);
+        void Load(string scriptPath);
+    }
+
+    public class ScriptService : IScriptService
     {
 
         private Dictionary<string, MethodInfo> _functionTable;

@@ -71,6 +71,10 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SmallCommons\SmallCommons.csproj">
+      <Project>{6621c778-3855-498c-b01b-498cadf06cb7}</Project>
+      <Name>SmallCommons</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SmallGame\SmallGame.csproj">
       <Project>{b756520b-eb2c-4195-a0ec-f9051de4bea7}</Project>
       <Name>SmallGame</Name>

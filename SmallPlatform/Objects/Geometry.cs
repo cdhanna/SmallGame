@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SmallGame;
+using SmallGame.Services;
 
 namespace SmallPlatform.Objects
 {
@@ -20,7 +21,7 @@ namespace SmallPlatform.Objects
 
         protected override void OnInit(CoreGameServices services)
         {
-            services.RequestService<RenderService>().OnRender += (s, a) => Render(a.PrimitiveBatch);
+            services.RenderService.OnRender += (s, a) => Render(a.PrimitiveBatch);
             base.OnInit(services);
         }
 

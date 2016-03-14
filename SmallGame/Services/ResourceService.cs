@@ -5,9 +5,16 @@ using System.Text;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SmallGame
+namespace SmallGame.Services
 {
-    public class ResourceService : CoreGameService
+
+    public interface IResourceService : CoreGameService
+    {
+        void Configure(ContentManager content);
+        C Load<C>(string filePath);
+    }
+
+    public class ResourceService : IResourceService
     {
 
         public ContentManager Content { get; set; }

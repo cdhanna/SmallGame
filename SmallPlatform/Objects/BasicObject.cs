@@ -6,6 +6,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Design;
 using SmallGame;
+using SmallGame.Services;
 
 namespace SmallPlatform.Objects
 {
@@ -43,13 +44,12 @@ namespace SmallPlatform.Objects
 
         protected override void OnInit(CoreGameServices services)
         {
-            services.RequestService<UpdateService>().OnUpdate += (s, a) => Update(a.GameTime, a.Services);
+            services.UpdateService.OnUpdate += (s, a) => Update(a.GameTime, a.Services);
         }
 
         public virtual void Update(GameTime time, CoreGameServices services)
         {
-
-            services.RequestService<ScriptService>().Run(Script, this);
+            services.ScriptService.Run(Script, this);
 
             Acceleration = ForceSum/Mass;
             Velocity += Acceleration;
