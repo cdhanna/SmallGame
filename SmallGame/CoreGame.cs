@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using SmallGame.Input;
 using SmallGame.Services;
 
 namespace SmallGame
@@ -27,6 +29,7 @@ namespace SmallGame
         public IRenderService RenderService { get { return Services.RenderService; } }
         public IResourceService ResourceService { get { return Services.ResourceService; } }
 
+        public KeyboardHelper KeyboardHelper { get { return Services.RequestService<KeyboardHelper>(); } }
 
         public CoreGame()
         {
@@ -39,6 +42,8 @@ namespace SmallGame
             Services.RegisterService<IRenderService>(new RenderService());
             Services.RegisterService<IUpdateService>(new UpdateService());
             Services.RegisterService<IScriptService>(new ScriptService());
+
+            Services.RegisterService(new KeyboardHelper());
 
             ScriptService.RegisterParameterHandler(() => Time);
         }
@@ -58,6 +63,7 @@ namespace SmallGame
             Level.Objects.Manage(Services, g => g.Kill());
             RenderService.Empty();
             UpdateService.Empty();
+            KeyboardHelper.Empty();
 
             Level = null;
         }
@@ -78,6 +84,7 @@ namespace SmallGame
             try
             {
                 Time = gameTime;
+                KeyboardHelper.Update();
                 ScriptService.Update(Time);
 
                 UpdateService.Update(gameTime, Services);

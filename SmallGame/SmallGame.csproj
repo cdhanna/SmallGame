@@ -44,6 +44,7 @@
     <Compile Include="CoreGame.cs" />
     <Compile Include="GameObjects\BasicObject.cs" />
     <Compile Include="GameObjects\SpriteObject.cs" />
+    <Compile Include="Input\KeyboardHelper.cs" />
     <Compile Include="Services\GameServices.cs" />
     <Compile Include="DataLoader.cs" />
     <Compile Include="GameLevel.cs" />
