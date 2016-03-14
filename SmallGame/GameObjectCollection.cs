@@ -54,7 +54,7 @@ namespace SmallGame
             }
         }
 
-        public void Manage(CoreGameServices services, Action<GameObject> action=null)
+        public void Manage(GameServices services, Action<GameObject> action=null)
         {
 
             Objects.Values.ToList().ForEach(list =>

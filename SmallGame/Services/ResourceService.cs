@@ -1,16 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace SmallGame.Services
 {
-
-    public interface IResourceService : CoreGameService
+    /// <summary>
+    /// The ResourceService allows assets to be loaded
+    /// </summary>
+    public interface IResourceService : IGameService
     {
+        /// <summary>
+        /// Configures the service 
+        /// </summary>
+        /// <param name="content">The ContentManager used to load assets</param>
         void Configure(ContentManager content);
+
+        /// <summary>
+        /// Load an asset
+        /// </summary>
+        /// <typeparam name="C">The type of asset to load</typeparam>
+        /// <param name="filePath">the file path of the asset</param>
+        /// <returns>an Instance of C, the asset that was loaded.</returns>
         C Load<C>(string filePath);
     }
 

@@ -18,7 +18,7 @@ namespace SmallGame
         public PrimitiveBatch PrimitiveBatch { get; private set; }
         public SpriteBatch SpriteBatch { get; private set; }
 
-        public CoreGameServices Services { get; private set; }
+        public GameServices Services { get; private set; }
         public GameTime Time { get; private set; }
 
         // ease of use accessors. 
@@ -32,7 +32,7 @@ namespace SmallGame
         {
             Graphics = new GraphicsDeviceManager(this);
             DataLoader = new DataLoader();
-            Services = new CoreGameServices();
+            Services = new GameServices();
 
 
             Services.RegisterService<IResourceService>(new ResourceService());

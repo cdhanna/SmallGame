@@ -40,7 +40,7 @@ namespace SmallPlatform.Objects
             _offset = Vector2.Zero;
         }
 
-        protected override void OnInit(CoreGameServices services)
+        protected override void OnInit(GameServices services)
         {
             _tex = services.ResourceService.Load<Texture2D>(MediaPath);
             if (!_offsetChanged)
@@ -52,7 +52,7 @@ namespace SmallPlatform.Objects
             base.OnInit(services);
         }
 
-        protected override void OnKill(CoreGameServices services)
+        protected override void OnKill(GameServices services)
         {
             //services.RequestService<RenderService>().OnRender -= Render;
             base.OnKill(services);

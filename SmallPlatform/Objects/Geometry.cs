@@ -19,7 +19,7 @@ namespace SmallPlatform.Objects
             Points = new List<Vector2>();
         }
 
-        protected override void OnInit(CoreGameServices services)
+        protected override void OnInit(GameServices services)
         {
             services.RenderService.OnRender += (s, a) => Render(a.PrimitiveBatch);
             base.OnInit(services);

@@ -42,7 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CoreGame.cs" />
-    <Compile Include="Services\CoreGameServices.cs" />
+    <Compile Include="Services\GameServices.cs" />
     <Compile Include="DataLoader.cs" />
     <Compile Include="GameLevel.cs" />
     <Compile Include="GameObject.cs" />

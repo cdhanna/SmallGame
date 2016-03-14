@@ -42,12 +42,12 @@ namespace SmallPlatform.Objects
 
         }
 
-        protected override void OnInit(CoreGameServices services)
+        protected override void OnInit(GameServices services)
         {
             services.UpdateService.OnUpdate += (s, a) => Update(a.GameTime, a.Services);
         }
 
-        public virtual void Update(GameTime time, CoreGameServices services)
+        public virtual void Update(GameTime time, GameServices services)
         {
             services.ScriptService.Run(Script, this);
 

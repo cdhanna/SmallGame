@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace SmallGame.Services
 {
 
-    public interface IRenderService : CoreGameService
+    public interface IRenderService : IGameService
     {
         EventHandler<RenderEventArgs> OnRender { get; set; }
         Color ClearColor { get; set; }

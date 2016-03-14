@@ -15,14 +15,14 @@ namespace SmallGame
 
         public string Script { get; set; }
 
-        private CoreGameServices _services;
+        private GameServices _services;
 
         protected GameObject()
         {
             State = "new";
         }
 
-        public void Init(CoreGameServices services)
+        public void Init(GameServices services)
         {
             _services = services;
 
@@ -39,12 +39,12 @@ namespace SmallGame
             State = "dead";
         }
 
-        protected virtual void OnInit(CoreGameServices services)
+        protected virtual void OnInit(GameServices services)
         {
             // do something?
         }
 
-        protected virtual void OnKill(CoreGameServices services)
+        protected virtual void OnKill(GameServices services)
         {
             // meh...
         }

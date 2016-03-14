@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework;
 
 namespace SmallGame.Services
 {
-    public interface IScriptService : CoreGameService
+    public interface IScriptService : IGameService
     {
         void RegisterCollection(ScriptCollection collection);
         void RegisterParameterHandler<P>(Func<P> fetcher);
