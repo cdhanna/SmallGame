@@ -14,12 +14,15 @@ namespace SmallGame
 
         public Dictionary<string, List<GameObject>> Objects { get; set; }
 
-        private Dictionary<string, GameObject> _objectMap; 
+        private Dictionary<string, GameObject> _objectMap;
+
+        //private List<GameObjectFetcher> Fetchers { get; set; } 
 
         public GameObjectCollection()
         {
             Objects = new Dictionary<string, List<GameObject>>();
             _objectMap = new Dictionary<string, GameObject>();
+            //Fetchers = new List<GameObjectFetcher>();
         }
 
         public void Add(GameObject obj)

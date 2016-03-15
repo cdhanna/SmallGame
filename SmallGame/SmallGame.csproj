@@ -6,7 +6,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{B756520B-EB2C-4195-A0EC-F9051DE4BEA7}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SmallGame</RootNamespace>
     <AssemblyName>SmallGame</AssemblyName>
@@ -41,9 +41,12 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Collections\BinTree.cs" />
     <Compile Include="CoreGame.cs" />
     <Compile Include="GameObjects\BasicObject.cs" />
+    <Compile Include="GameObjects\GameObjectFetcher.cs" />
     <Compile Include="GameObjects\SpriteObject.cs" />
+    <Compile Include="GameObjects\XFetcher.cs" />
     <Compile Include="Input\KeyboardHelper.cs" />
     <Compile Include="Services\GameServices.cs" />
     <Compile Include="DataLoader.cs" />
