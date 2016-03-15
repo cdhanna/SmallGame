@@ -59,7 +59,7 @@
     <Compile Include="Services\RenderService.cs" />
     <Compile Include="Services\ResourceService.cs" />
     <Compile Include="Services\ScriptService.cs" />
-    <Compile Include="Services\StateUpdateService.cs" />
+    <Compile Include="Services\StateTracker.cs" />
     <Compile Include="Services\UpdateService.cs" />
   </ItemGroup>
   <ItemGroup>
