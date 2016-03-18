@@ -107,6 +107,7 @@ namespace SmallGame.GameObjects
         /// <param name="services">The current GameServices</param>
         public virtual void Update(GameTime time, GameServices services)
         {
+
             services.ScriptService.Run(Script, this);
 
             Acceleration = ForceSum/Mass;

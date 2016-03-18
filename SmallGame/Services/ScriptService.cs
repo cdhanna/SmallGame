@@ -72,6 +72,7 @@ namespace SmallGame.Services
 
         public void Run(string name, GameObject gob)
         {
+            if (name == null) return; // we don't have a sript. 
             if (!_functionTable.ContainsKey(name)) return; // we don't have that script.
             var method = _functionTable[name];
 

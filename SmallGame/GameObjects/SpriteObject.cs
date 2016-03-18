@@ -6,6 +6,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SmallGame;
+using SmallGame.Render;
 using SmallGame.Services;
 
 namespace SmallGame.GameObjects
@@ -69,7 +70,13 @@ namespace SmallGame.GameObjects
             {
                 Offset = new Vector2(_tex.Width, _tex.Height) / 2;    
             }
-            services.RenderService.OnRender += Render;
+            
+            //services.RenderService.OnRender += Render;
+
+            //services.RenderService.Strategy.GetPass<SimpleSpritePass>()
+            services.RenderService.GetPass<SimpleSpritePass>()
+                .AddAction(OnRender);
+
 
             base.OnInit(services);
         }
@@ -80,17 +87,10 @@ namespace SmallGame.GameObjects
             base.OnKill(services);
         }
 
-        /// <summary>
-        /// Renders the sprite
-        /// </summary>
-        /// <param name="sender">idk, probably the renderService</param>
-        /// <param name="args">The render arguments</param>
-        protected virtual void Render(object renderService, RenderEventArgs args)
+        protected virtual void OnRender(RenderArgs<SimpleSpritePass> args)
         {
-          
-            args.SpriteBatch.Draw(_tex, Position, null, Color, Angle, Offset, Scale, SpriteEffects.None, 1f);
+            args.Pass.SpriteBatch.Draw(_tex, Position, null, Color, Angle, Offset, Scale, SpriteEffects.None, 1f);  
         }
-
 
     }
 }

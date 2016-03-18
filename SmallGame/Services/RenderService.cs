@@ -5,6 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SmallGame.Render;
 
 namespace SmallGame.Services
 {
@@ -13,22 +14,10 @@ namespace SmallGame.Services
     /// </summary>
     public interface IRenderService : IGameService
     {
-        /// <summary>
-        /// Gets or Sets the EventHandler for the rendering point
-        /// </summary>
-        EventHandler<RenderEventArgs> OnRender { get; set; }
 
-        /// <summary>
-        /// Gets or Sets the buffer clear color
-        /// </summary>
-        Color ClearColor { get; set; }
+        RenderStrategy Strategy { get; }
 
-        /// <summary>
-        /// Configures the service
-        /// </summary>
-        /// <param name="spriteBatch">The spritebatch that will be used and passed to all subscribers</param>
-        /// <param name="primitiveBatch">The primitivebatch that will be used and passed to all subscribers</param>
-        void Configure(SpriteBatch spriteBatch, PrimitiveBatch primitiveBatch);
+        void Configure(GameServices services, GraphicsDevice graphics);
         
         /// <summary>
         /// Clears all subscribers of the OnRender event
@@ -39,55 +28,83 @@ namespace SmallGame.Services
         /// Invokes all subscribers of the OnRender event
         /// </summary>
         void Render();
+
+        P GetPass<P>() where P : RenderPass;
+
+        void SetStrategy(RenderStrategy strategy);
+        void Init();
+
     }
 
-    public class RenderEventArgs : EventArgs
-    {
-        public SpriteBatch SpriteBatch { get; set; }
-        public PrimitiveBatch PrimitiveBatch { get; set; }
-        public GraphicsDevice Graphics { get { return SpriteBatch.GraphicsDevice; } }
+    //public class RenderEventArgs : EventArgs
+    //{
+    //    public SpriteBatch SpriteBatch { get; set; }
+    //    public PrimitiveBatch PrimitiveBatch { get; set; }
+    //    public GraphicsDevice Graphics { get { return SpriteBatch.GraphicsDevice; } }
 
-        public RenderEventArgs(SpriteBatch spriteBatch, PrimitiveBatch primitiveBatch)
-        {
-            SpriteBatch = spriteBatch;
-            PrimitiveBatch = primitiveBatch;
-        }
-    }
+    //    public RenderEventArgs(SpriteBatch spriteBatch, PrimitiveBatch primitiveBatch)
+    //    {
+    //        SpriteBatch = spriteBatch;
+    //        PrimitiveBatch = primitiveBatch;
+    //    }
+    //}
 
     public class RenderService : IRenderService
     {
 
-        public SpriteBatch SpriteBatch { get; set; }
-        public PrimitiveBatch PrimitiveBatch { get; set; }
-        public GraphicsDevice Graphics { get { return SpriteBatch.GraphicsDevice; } }
-        public Color ClearColor { get; set; }
+        public RenderStrategy Strategy { get; private set; }
 
-        public EventHandler<RenderEventArgs> OnRender { get; set; }
+        public GraphicsDevice Graphics { get; private set; }
+        public GameServices Services { get; private set; }
         
         public RenderService()
         {
-            ClearColor = Color.Black;
-            OnRender = (sender, args) => { };
+
         }
 
-        public void Configure(SpriteBatch spriteBatch, PrimitiveBatch primitveBatch)
+        public P GetPass<P>() where P : RenderPass
         {
-            SpriteBatch = spriteBatch;
-            PrimitiveBatch = primitveBatch;
+            if (Strategy == null) return null; 
+
+            return Strategy.GetPass<P>();
+        }
+
+        public void Configure(GameServices services, GraphicsDevice graphics)
+        {
+            Graphics = graphics;
+            Services = services;
+            Empty();
+        }
+
+        public void SetStrategy(RenderStrategy strategy)
+        {
+            Strategy = strategy;
+            if (Strategy == null)
+            {
+                Strategy = new SimpleRenderStrategy();
+            }
+            Init();
+        }
+
+        public void Init()
+        {
+            if (Strategy == null) return; 
+
+            Strategy.Init(Services, Graphics);
         }
 
         public void Empty()
         {
-            OnRender = (sender, args) => { };
+            if (Strategy == null) return; 
+
+            Strategy.Init(Services, Graphics);
         }
 
         public void Render()
         {
-            Graphics.Clear(ClearColor);
+            if (Strategy == null) return; 
 
-            SpriteBatch.Begin();
-            OnRender.Invoke(this, new RenderEventArgs(SpriteBatch, PrimitiveBatch));
-            SpriteBatch.End();
+            Strategy.Render();
 
         }
 

@@ -22,6 +22,11 @@ namespace SmallPlatform.Content
             obj.Position = 100 * new Vector2((float)Math.Sin(t), (float)Math.Cos(t));
         }
 
+        public void RandomSlowRotate(BasicObject obj)
+        {
+            
+        }
+
         public override void Update(GameTime time)
         {
             t += .01f;

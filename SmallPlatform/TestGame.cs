@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SmallCommons.Rendering;
 using SmallGame;
 using SmallGame.GameObjects;
+using SmallGame.Render;
 using SmallGame.Services;
 using SmallPlatform.Levels;
 using SmallPlatform.Objects;
@@ -28,8 +30,8 @@ namespace SmallPlatform
             
             DataLoader.LoadAndWatch<TestLevel>("sample.json", (level) => lvl = SetLevel(level));
 
-            var renderingSrvc = Services.RenderService;
-            renderingSrvc.ClearColor = Color.Maroon;
+            //var renderingSrvc = Services.RenderService;
+            RenderService.SetStrategy(new ExampleRenderStrategy());
             
             ScriptService.LoadAndWatch("TestScripts.script.cs");
         }

@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SmallGame.Input;
+using SmallGame.Render;
 using SmallGame.Services;
 
 namespace SmallGame
@@ -17,8 +18,8 @@ namespace SmallGame
         public GameLevel Level { get; private set; }
         public GraphicsDeviceManager Graphics { get; private set; }
 
-        public PrimitiveBatch PrimitiveBatch { get; private set; }
-        public SpriteBatch SpriteBatch { get; private set; }
+        //public PrimitiveBatch PrimitiveBatch { get; private set; }
+        //public SpriteBatch SpriteBatch { get; private set; }
 
         public GameServices Services { get; private set; }
         public GameTime Time { get; private set; }
@@ -46,6 +47,10 @@ namespace SmallGame
             Services.RegisterService(new KeyboardHelper());
 
             ScriptService.RegisterParameterHandler(() => Time);
+
+
+            //RenderService.Strategy.AddPass(new DefaultRenderPass("default"));
+
         }
 
         public T SetLevel<T>(T level) where T: GameLevel
@@ -70,11 +75,15 @@ namespace SmallGame
 
         protected override void Initialize()
         {
-            PrimitiveBatch = new PrimitiveBatch(GraphicsDevice);
-            SpriteBatch = new SpriteBatch(GraphicsDevice);
-            
-            RenderService.Configure(SpriteBatch, PrimitiveBatch);
+            //PrimitiveBatch = new PrimitiveBatch(GraphicsDevice);
+            //SpriteBatch = new SpriteBatch(GraphicsDevice);
+
             ResourceService.Configure(Content);
+
+            RenderService.Configure(Services, GraphicsDevice);
+            //RenderService.Strategy.AddPass(new SimpleSpritePass());
+            //RenderService.Strategy.AddPass(new SimplePrimtivePass());
+            RenderService.Init();
 
             base.Initialize();
         }
