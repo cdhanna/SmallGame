@@ -47,6 +47,11 @@ namespace SmallGame.Services
         public IResourceService ResourceService { get { return RequestService<IResourceService>(); } }
 
         /// <summary>
+        /// Gets the LevelService attached to the GameServices collection. 
+        /// </summary>
+        public ILevelService LevelService { get { return RequestService<ILevelService>(); } }
+
+        /// <summary>
         /// Constructs a new collection of IGameServices. 
         /// </summary>
         public GameServices()

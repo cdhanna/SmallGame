@@ -15,4 +15,16 @@ namespace SmallGame.Render
         }
     }
 
+
+    public class CameraSpriteStrategy : RenderStrategy
+    {
+        protected override void OnInit(GraphicsDevice graphics)
+        {
+
+            AddPass(new SimpleSpritePass());
+            AddPass(new CameraSpritePass());
+            
+        }
+    }
+
 }

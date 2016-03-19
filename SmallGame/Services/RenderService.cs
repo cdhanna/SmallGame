@@ -16,6 +16,7 @@ namespace SmallGame.Services
     {
 
         RenderStrategy Strategy { get; }
+        GraphicsDevice Graphics { get;  }
 
         void Configure(GameServices services, GraphicsDevice graphics);
         
@@ -31,7 +32,7 @@ namespace SmallGame.Services
 
         P GetPass<P>() where P : RenderPass;
 
-        void SetStrategy(RenderStrategy strategy);
+        RenderStrategy SetStrategy(RenderStrategy strategy);
         void Init();
 
     }
@@ -76,7 +77,7 @@ namespace SmallGame.Services
             Empty();
         }
 
-        public void SetStrategy(RenderStrategy strategy)
+        public RenderStrategy SetStrategy(RenderStrategy strategy)
         {
             Strategy = strategy;
             if (Strategy == null)
@@ -84,6 +85,7 @@ namespace SmallGame.Services
                 Strategy = new SimpleRenderStrategy();
             }
             Init();
+            return strategy;
         }
 
         public void Init()

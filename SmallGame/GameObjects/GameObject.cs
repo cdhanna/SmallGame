@@ -54,6 +54,8 @@ namespace SmallGame.GameObjects
         protected GameObject()
         {
             State = "new";
+            Type = GetType().Name;
+            Id = IdFactory.NewId;
         }
 
         /// <summary>

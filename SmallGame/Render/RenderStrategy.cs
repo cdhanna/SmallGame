@@ -31,7 +31,7 @@ namespace SmallGame.Render
             ClearColor = Color.DarkSlateGray;
         }
 
-        protected void AddPass<P>(P pass) where P : RenderPass
+        public void AddPass<P>(P pass) where P : RenderPass
         {
             if (pass == null) throw new Exception("Cannot add a null pass to a render strategy");
 

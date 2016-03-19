@@ -72,8 +72,9 @@ namespace SmallGame.Render
                 throw new Exception("A pass must be genericed on its own type. ");
         }
 
-        protected RenderPass() : this(typeof (T).Name)
+        protected RenderPass() : base()
         {
+            RenderActions = new List<Action<RenderArgs<T>>>();
         }
 
 
@@ -120,6 +121,11 @@ namespace SmallGame.Render
         {
             Name = name;
             //RenderActions = new List<Action<RenderArgs>>();
+        }
+
+        protected RenderPass()
+        {
+            Name = GetType().Name;
         }
 
         protected abstract void OnInit(GraphicsDevice graphics);

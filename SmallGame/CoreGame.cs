@@ -15,7 +15,7 @@ namespace SmallGame
     public class CoreGame : Game
     {
         public DataLoader DataLoader { get; private set; }
-        public GameLevel Level { get; private set; }
+        //public GameLevel Level { get; private set; }
         public GraphicsDeviceManager Graphics { get; private set; }
 
         //public PrimitiveBatch PrimitiveBatch { get; private set; }
@@ -29,6 +29,7 @@ namespace SmallGame
         public IUpdateService UpdateService { get { return Services.UpdateService; } }
         public IRenderService RenderService { get { return Services.RenderService; } }
         public IResourceService ResourceService { get { return Services.ResourceService; } }
+        public ILevelService LevelService { get { return Services.LevelService; } }
 
         public KeyboardHelper KeyboardHelper { get { return Services.RequestService<KeyboardHelper>(); } }
 
@@ -43,6 +44,7 @@ namespace SmallGame
             Services.RegisterService<IRenderService>(new RenderService());
             Services.RegisterService<IUpdateService>(new UpdateService());
             Services.RegisterService<IScriptService>(new ScriptService());
+            Services.RegisterService<ILevelService>(new LevelService());
 
             Services.RegisterService(new KeyboardHelper());
 
@@ -53,25 +55,25 @@ namespace SmallGame
 
         }
 
-        public T SetLevel<T>(T level) where T: GameLevel
-        {
-            EndLevel();
-            Level = level;
-            return level;
-        }
+        //public T SetLevel<T>(T level) where T: GameLevel
+        //{
+        //    EndLevel();
+        //    Level = level;
+        //    return level;
+        //}
 
-        public void EndLevel()
-        {
-            if (Level == null) return;
+        //public void EndLevel()
+        //{
+        //    if (Level == null) return;
 
             
-            Level.Objects.Manage(Services, g => g.Kill());
-            RenderService.Empty();
-            UpdateService.Empty();
-            KeyboardHelper.Empty();
+        //    Level.Objects.Manage(Services, g => g.Kill());
+        //    RenderService.Empty();
+        //    UpdateService.Empty();
+        //    KeyboardHelper.Empty();
 
-            Level = null;
-        }
+        //    Level = null;
+        //}
 
         protected override void Initialize()
         {
@@ -79,7 +81,7 @@ namespace SmallGame
             //SpriteBatch = new SpriteBatch(GraphicsDevice);
 
             ResourceService.Configure(Content);
-
+            LevelService.Configure(Services);
             RenderService.Configure(Services, GraphicsDevice);
             //RenderService.Strategy.AddPass(new SimpleSpritePass());
             //RenderService.Strategy.AddPass(new SimplePrimtivePass());
@@ -97,7 +99,9 @@ namespace SmallGame
                 ScriptService.Update(Time);
 
                 UpdateService.Update(gameTime, Services);
-                Level.Objects.Manage(Services);
+
+                //Level.Objects.Manage(Services);
+                LevelService.Update();
 
             }
             catch (Exception ex)

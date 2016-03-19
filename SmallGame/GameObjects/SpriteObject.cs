@@ -44,6 +44,8 @@ namespace SmallGame.GameObjects
             }
         }
 
+        public bool OnCamera { get; set; }
+
 
         private Texture2D _tex;
         private bool _offsetChanged = false;
@@ -57,7 +59,10 @@ namespace SmallGame.GameObjects
             Color = Color.White;
             Scale = Vector2.One;
             _offset = Vector2.Zero;
+            OnCamera = false;
         }
+
+        
 
         /// <summary>
         /// Inits the SpriteObject. Unless set in JSON data or earlier, the Offset property will be set to the center of the image
@@ -74,9 +79,18 @@ namespace SmallGame.GameObjects
             //services.RenderService.OnRender += Render;
 
             //services.RenderService.Strategy.GetPass<SimpleSpritePass>()
-            services.RenderService.GetPass<SimpleSpritePass>()
-                .AddAction(OnRender);
 
+            if (OnCamera)
+            {
+                services.RenderService.GetPass<CameraSpritePass>()
+                    .AddAction(OnRender);
+            }
+            else
+            {
+                services.RenderService.GetPass<SimpleSpritePass>()
+                    .AddAction(OnRender);    
+            }
+            
 
             base.OnInit(services);
         }
@@ -89,7 +103,7 @@ namespace SmallGame.GameObjects
 
         protected virtual void OnRender(RenderArgs<SimpleSpritePass> args)
         {
-            args.Pass.SpriteBatch.Draw(_tex, Position, null, Color, Angle, Offset, Scale, SpriteEffects.None, 1f);  
+            args.Pass.SpriteBatch.Draw(_tex, Position, null, Color, Angle, Offset, Scale, SpriteEffects.None, 0f);  
         }
 
     }

@@ -10,7 +10,7 @@ using SmallGame.Render;
 namespace SmallCommons.Rendering
 {
 
-    class ScreenBloomPass<T> : ScreenBloomPass where T : RenderPass
+    public class ScreenBloomPass<T> : ScreenBloomPass where T : RenderPass
     {
         public ScreenBloomPass(string extractEffect, string combineEffect, string blurEffect)
             : base(extractEffect, combineEffect, blurEffect) { }
@@ -28,7 +28,7 @@ namespace SmallCommons.Rendering
         }
     }
 
-    class ScreenBloomPass : RenderPass<ScreenBloomPass>
+    public class ScreenBloomPass : RenderPass<ScreenBloomPass>
     {
         private SpriteBatch _spriteBatch;
         public BloomComponent Bloom { get; private set; }

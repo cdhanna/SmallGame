@@ -1,0 +1,48 @@
+﻿{
+	"Name": "sample_level",
+	"Metadata": { },
+	"Objects": [
+
+		{
+			"Type": "SpriteObject",
+			"Id": "cloud-template",
+			"Data": {
+				"Position": "100, 200",
+				"MediaPath": "Content\\clouds",
+				"Omega": "0",
+				"Color": {"R": 255},
+				"OnCamera": true
+			},
+		},		
+		{
+			"Type": "SpriteObject",
+			"Data": {
+				"Position": "300, 300",
+				"MediaPath": "Content\\invader",
+				"Omega": "0",
+				"Color": {"G": 255, "B": 150},
+				"OnCamera": "true"
+			},
+		},
+				{
+			"Type": "SpriteObject",
+			"Data": {
+				"Position": "350, 300",
+				"MediaPath": "Content\\invader",
+				"Omega": "0",
+				"Color": {"G": 200, "B": 200},
+				"OnCamera": "true"
+			},
+		},
+				{
+			"Type": "SpriteObject",
+			"Data": {
+				"Position": "400, 300",
+				"MediaPath": "Content\\invader",
+				"Omega": "0",
+				"Color": {"G": 150, "B": 255},
+				"OnCamera": "true"
+			},
+		}
+	]
+}
