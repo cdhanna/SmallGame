@@ -50,6 +50,7 @@
     <Compile Include="Input\KeyboardHelper.cs" />
     <Compile Include="Render\RenderPass.cs" />
     <Compile Include="Render\RenderStrategy.cs" />
+    <Compile Include="Render\ShaderCompiler.cs" />
     <Compile Include="Render\SimpleRenderStrategy.cs" />
     <Compile Include="Render\StandardRenderPasses.cs" />
     <Compile Include="Services\GameServices.cs" />

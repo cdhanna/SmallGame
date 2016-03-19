@@ -52,7 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rendering\Bloom\BloomComponent.cs" />
     <Compile Include="Rendering\Bloom\BloomSettings.cs" />
-    <Compile Include="Rendering\ExampleRenderStrategy.cs" />
+    <Compile Include="Rendering\SimpleBloomStrategy.cs" />
     <Compile Include="Rendering\ScreenBloomPass.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -47,7 +50,31 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="ShaderBuildTools\2MGFX.exe" />
+    <Content Include="ShaderBuildTools\CppNet.dll" />
+    <Content Include="ShaderBuildTools\libmojoshader_64.dll" />
+    <Content Include="ShaderBuildTools\SharpDX.D3DCompiler.dll" />
+    <Content Include="ShaderBuildTools\SharpDX.Direct2D1.dll" />
+    <Content Include="ShaderBuildTools\SharpDX.Direct3D11.dll" />
+    <Content Include="ShaderBuildTools\SharpDX.Direct3D9.dll" />
+    <Content Include="ShaderBuildTools\SharpDX.dll" />
+    <Content Include="ShaderBuildTools\SharpDX.DXGI.dll" />
+    <Content Include="ShaderBuildTools\SharpDX.MediaFoundation.dll" />
+    <Content Include="ShaderBuildTools\SharpDX.RawInput.dll" />
+    <Content Include="ShaderBuildTools\SharpDX.XAudio2.dll" />
+    <Content Include="ShaderBuildTools\SharpDX.XInput.dll" />
+    <Content Include="ShaderBuildTools\SharpFont.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

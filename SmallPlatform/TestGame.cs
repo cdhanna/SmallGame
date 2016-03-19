@@ -28,10 +28,16 @@ namespace SmallPlatform
                 StandardGameObjectParser.For<SpriteObject>());
             
             
+
+            ShaderCompiler.Init("Content", @"C:\proj\SmallGame\DataCopy\ShaderBuildTools");
+
             DataLoader.LoadAndWatch<TestLevel>("sample.json", (level) => lvl = SetLevel(level));
 
             //var renderingSrvc = Services.RenderService;
-            RenderService.SetStrategy(new ExampleRenderStrategy());
+            RenderService.SetStrategy(new SimpleBloomStrategy(
+                "Content/Shaders/BloomExtra.fx.mgfxo",
+                "Content/Shaders/BloomCombine.fx.mgfxo",
+                "Content/Shaders/GaussianBlur.fx.mgfxo"));
             
             ScriptService.LoadAndWatch("TestScripts.script.cs");
         }
