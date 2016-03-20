@@ -49,12 +49,19 @@ namespace SmallPlatform
             ScriptService.LoadAndWatch("TestScripts.script.cs");
 
             var camera = RenderService.Strategy.GetPass<CameraSpritePass>().Camera;
-            
-            KeyboardHelper.OnDown(Keys.A, args => camera.ForceSum -= Vector2.UnitX);
-            KeyboardHelper.OnDown(Keys.D, args => camera.ForceSum += Vector2.UnitX);
 
-            KeyboardHelper.OnDown(Keys.W, args => camera.ForceSum -= Vector2.UnitY);
-            KeyboardHelper.OnDown(Keys.S, args => camera.ForceSum += Vector2.UnitY);
+            //KeyboardHelper.OnDown(Keys.A, args => camera.ForceSum -= Vector2.UnitX);
+            //KeyboardHelper.OnDown(Keys.D, args => camera.ForceSum += Vector2.UnitX);
+
+            //KeyboardHelper.OnDown(Keys.W, args => camera.ForceSum -= Vector2.UnitY);
+            //KeyboardHelper.OnDown(Keys.S, args => camera.ForceSum += Vector2.UnitY);
+
+
+            KeyboardHelper.OnDown(Keys.A, a => camera.Move(-Vector2.UnitX));
+            KeyboardHelper.OnDown(Keys.D, a => camera.Move(Vector2.UnitX));
+            KeyboardHelper.OnDown(Keys.W, a => camera.Move(-Vector2.UnitY));
+            KeyboardHelper.OnDown(Keys.S, a => camera.Move(Vector2.UnitY));
+
 
             KeyboardHelper.OnDown(Keys.Q, args => camera.TorqueSum += .01f);
             KeyboardHelper.OnDown(Keys.E, args => camera.TorqueSum -= .01f);

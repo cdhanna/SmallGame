@@ -43,6 +43,19 @@ namespace SmallGame.GameObjects
             
         }
 
+        public void Move(Vector2 inc)
+        {
+            // add inc to position such that we always move 'right', iff inc is unitx. 
+            // this means we need to not just add the inc to the position, but convert it into a vector
+            // that points to the right, currently. 
+            // rotate the vector around the Angle. 
+
+            var rotation = Matrix.CreateRotationZ(-Angle);
+            var inc3 = Vector3.Transform(new Vector3(inc.X, inc.Y, 0), rotation);
+            inc = new Vector2(inc3.X, inc3.Y);
+            ForceSum += inc;
+
+        }
 
         protected override void OnInit(GameServices services)
         {
