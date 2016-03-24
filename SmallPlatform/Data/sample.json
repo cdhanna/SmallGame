@@ -10,7 +10,8 @@
 				"Position": "100, 200",
 				"MediaPath": "Content\\clouds",
 				"Omega": "0",
-				"Color": {"R": 255}
+				"Color": {"R": 255},
+				"OnCamera": true
 			},
 			"Script": "SinMove"
 		},
@@ -40,7 +41,6 @@
 			"Type": "Geometry",
 			"Data": {
 				"Points": [
-					"200, 100",
 					"400, 100",
 					"400, 150",
 					"200, 150"

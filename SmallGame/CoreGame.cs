@@ -6,6 +6,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SmallGame.GameObjects;
 using SmallGame.Input;
 using SmallGame.Render;
 using SmallGame.Services;
@@ -50,7 +51,6 @@ namespace SmallGame
 
             ScriptService.RegisterParameterHandler(() => Time);
 
-
             //RenderService.Strategy.AddPass(new DefaultRenderPass("default"));
 
         }
@@ -80,12 +80,16 @@ namespace SmallGame
             //PrimitiveBatch = new PrimitiveBatch(GraphicsDevice);
             //SpriteBatch = new SpriteBatch(GraphicsDevice);
 
+
+
+
             ResourceService.Configure(Content);
             LevelService.Configure(Services);
             RenderService.Configure(Services, GraphicsDevice);
             //RenderService.Strategy.AddPass(new SimpleSpritePass());
             //RenderService.Strategy.AddPass(new SimplePrimtivePass());
             RenderService.Init();
+
 
             base.Initialize();
         }

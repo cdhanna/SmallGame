@@ -23,14 +23,17 @@ namespace SmallCommons.Rendering
         {
             // AddPass(new ScreenBloomPass<SimpleSpritePass>("sprites", _extractPath, _combinePath, _blurPath));
 
-            AddPass(new CameraSpritePass());
-            AddPass(new ScreenBloomPass<CameraSpritePass>("sprites", _extractPath, _combinePath, _blurPath));
-
             AddPass(new SimpleSpritePass());
+            //AddPass(new ScreenBloomPass<SimpleSpritePass>("sprites", _extractPath, _combinePath, _blurPath));
+
+
+            AddPass(new SimplePrimtivePass());
+            
+            //AddPass(new SimpleSpritePass());
            
 
             //TODO make setting assignment more intuitive. 
-            GetPass<ScreenBloomPass<CameraSpritePass>>().Bloom.Settings = BloomSettings.PresetSettings[5];
+            //GetPass<ScreenBloomPass<SimpleSpritePass>>().Bloom.Settings = BloomSettings.PresetSettings[5];
 
         }
     }

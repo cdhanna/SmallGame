@@ -107,6 +107,7 @@ namespace SmallGame.Render
         public RenderTarget2D Output { get; protected set; }
         protected GraphicsDevice Graphics { get; private set; }
         protected GameServices Services { get; private set; }
+        protected Camera2D ActiveCamera { get { return Services.RenderService.ActiveCamera; } }
 
       //  protected List<Action<RenderArgs>> RenderActions { get; set; } 
 

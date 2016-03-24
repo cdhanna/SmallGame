@@ -82,8 +82,8 @@ namespace SmallGame.GameObjects
 
             if (OnCamera)
             {
-                services.RenderService.GetPass<CameraSpritePass>()
-                    .AddAction(OnRender);
+                services.RenderService.GetPass<SimpleSpritePass>()
+                    .AddCameraAction(OnRender);
             }
             else
             {

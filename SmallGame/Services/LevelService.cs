@@ -38,6 +38,8 @@ namespace SmallGame.Services
         {
             EndLevel();
             Level = level;
+            _services.RenderService.ActiveCamera.Reset();
+            level.Objects.Add(_services.RenderService.ActiveCamera);
             OnLevelLoad(this, new EventArgs());
             return level;
         }

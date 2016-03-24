@@ -5,6 +5,7 @@ using System.Security;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SmallGame.GameObjects;
 using SmallGame.Services;
 
 namespace SmallGame.Render
@@ -22,6 +23,7 @@ namespace SmallGame.Render
         public Color ClearColor { get; set; }
         public GameServices Services { get; set; }
 
+
         protected RenderStrategy()
         {
             Passes = new List<RenderPass>();
@@ -29,6 +31,8 @@ namespace SmallGame.Render
             PassNameTable = new Dictionary<string, RenderPass>();
 
             ClearColor = Color.DarkSlateGray;
+           
+            
         }
 
         public void AddPass<P>(P pass) where P : RenderPass

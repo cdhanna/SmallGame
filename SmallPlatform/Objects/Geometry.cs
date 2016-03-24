@@ -16,18 +16,28 @@ namespace SmallPlatform.Objects
         //public Vector2 Point { get; set; }
         public List<Vector2> Points { get; set; }
         public Color Color { get; set; }
+        public bool OnCamera { get; set; }
 
         public Geometry()
         {
             Points = new List<Vector2>();
             Color = Color.Blue;
+            OnCamera = true;
         }
 
         protected override void OnInit(GameServices services)
         {
-            services.RenderService.GetPass<SimplePrimtivePass>()
-                .AddAction(Render);
 
+            if (OnCamera)
+            {
+                services.RenderService.GetPass<SimplePrimtivePass>()
+                    .AddCameraAction(Render);
+            }
+            else
+            {
+                services.RenderService.GetPass<SimplePrimtivePass>()
+                    .AddAction(Render);
+            }
             base.OnInit(services);
         }
 

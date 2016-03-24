@@ -58,6 +58,11 @@ namespace SmallGame.GameObjects
             Id = IdFactory.NewId;
         }
 
+        public void Reset()
+        {
+            State = "new";
+        }
+
         /// <summary>
         /// Initializes the GameObject. Sets State to Ok
         /// </summary>

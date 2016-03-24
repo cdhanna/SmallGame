@@ -5,6 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using SmallGame.GameObjects;
 using SmallGame.Render;
 
 namespace SmallGame.Services
@@ -17,6 +18,7 @@ namespace SmallGame.Services
 
         RenderStrategy Strategy { get; }
         GraphicsDevice Graphics { get;  }
+        Camera2D ActiveCamera { get; }
 
         void Configure(GameServices services, GraphicsDevice graphics);
         
@@ -54,7 +56,7 @@ namespace SmallGame.Services
     {
 
         public RenderStrategy Strategy { get; private set; }
-
+        public Camera2D ActiveCamera { get; private set; }
         public GraphicsDevice Graphics { get; private set; }
         public GameServices Services { get; private set; }
         
@@ -74,23 +76,25 @@ namespace SmallGame.Services
         {
             Graphics = graphics;
             Services = services;
+            ActiveCamera = new Camera2D();
+            ActiveCamera.Init(services);
             Empty();
         }
 
         public RenderStrategy SetStrategy(RenderStrategy strategy)
         {
             Strategy = strategy;
-            if (Strategy == null)
-            {
-                Strategy = new SimpleRenderStrategy();
-            }
+            //if (Strategy == null)
+            //{
+            //    Strategy = new SimpleRenderStrategy();
+            //}
             Init();
             return strategy;
         }
 
         public void Init()
         {
-            if (Strategy == null) return; 
+            if (Strategy == null) Strategy = new SimpleRenderStrategy();
 
             Strategy.Init(Services, Graphics);
         }

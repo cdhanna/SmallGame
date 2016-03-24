@@ -68,6 +68,8 @@ namespace SmallGame
 
         #endregion
 
+        public Matrix Transform { get; set; }
+
         // the constructor creates a new PrimitiveBatch and sets up all of the internals
         // that PrimitiveBatch will need.
         public PrimitiveBatch(GraphicsDevice graphicsDevice)
@@ -77,6 +79,7 @@ namespace SmallGame
                 throw new ArgumentNullException("graphicsDevice");
             }
             device = graphicsDevice;
+            Transform = Matrix.Identity;
 
             // set up a new basic effect, and enable vertex colors.
             basicEffect = new BasicEffect(graphicsDevice);
@@ -248,6 +251,10 @@ namespace SmallGame
                     throw new Exception("Invalid primitve type");
             }
 
+            for (int i = 0; i < positionInBuffer; i++)
+            {
+                vertices[i].Position = Vector3.Transform(vertices[i].Position, Transform);
+            }
             // submit the draw call to the graphics card
             device.DrawUserPrimitives<VertexPositionColor>(primitiveType, vertices, 0,
                 primitiveCount);

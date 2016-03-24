@@ -39,14 +39,23 @@ namespace SmallGame.Render
             startInfo.CreateNoWindow = true;
             startInfo.RedirectStandardOutput = true;
             startInfo.RedirectStandardInput = true;
+            startInfo.RedirectStandardError = true;
 
             startInfo.UseShellExecute = false;
             startInfo.WorkingDirectory = toolPath + "\\";
-            startInfo.Arguments = input + " " + input + ".mgfxo";
+            startInfo.Arguments = input + " " + input + ".mgfxo /Profile:DirectX_11";
             startInfo.FileName = toolPath + "\\2MGFX.exe";
            
             p.StartInfo = startInfo;
             p.Start();
+            var err = p.StandardError.ReadToEnd();
+            if (err.Contains("Failed to compile"))
+            {
+                throw new Exception("THe shader failed to compile: " + err);
+            }
+            Console.WriteLine(err);
+            Console.WriteLine(p.StandardOutput.ReadToEnd());
+
 
             //p.OutputDataReceived += new DataReceivedEventHandler
             //(
