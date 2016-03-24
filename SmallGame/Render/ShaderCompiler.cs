@@ -43,7 +43,7 @@ namespace SmallGame.Render
 
             startInfo.UseShellExecute = false;
             startInfo.WorkingDirectory = toolPath + "\\";
-            startInfo.Arguments = input + " " + input + ".mgfxo /Profile:DirectX_11";
+            startInfo.Arguments = input + " " + input + ".mgfxo";
             startInfo.FileName = toolPath + "\\2MGFX.exe";
            
             p.StartInfo = startInfo;

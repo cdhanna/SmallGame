@@ -5,13 +5,6 @@ float4x4 World;
 float4x4 View;
 float4x4 Projection;
 
-sampler BaseSampler : register(s1)
-{
-	Texture = (ParticleData);
-	Filter = Linear;
-	AddressU = clamp;
-	AddressV = clamp;
-};
 
 struct VertexShaderInput
 {
@@ -39,14 +32,8 @@ VertexShaderOutput VertexShaderFunction(VertexShaderInput input)
 {
 	VertexShaderOutput output;
 	output.Color = input.Color;
-	
 	float4 pos = input.Position;
-
-		// fetch actual position from texture. 
-		//float4 particlePos = ParticleData.SampleLevel(BaseSampler, float2(pos.x, pos.y), 0);
-		float4 particlePos = tex2Dlod(BaseSampler, float4(pos.x, pos.y, 0, 0));
-		pos.x = particlePos.x;
-	pos.y = particlePos.y;
+	
 
 	// extend out into a triangle.
 	if (pos.z == 0){

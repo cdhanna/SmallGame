@@ -131,8 +131,7 @@ namespace SmallPlatform.Objects
             //_basicEffect.CurrentTechnique.Passes[0].Apply();
             _effect.Parameters["World"].SetValue(args.Pass.Camera.Transform);
             
-            _effect.Parameters["ParticleData"].SetValue(_particleTex);
-
+           
             //buffer = _particles.Select(p => {new VertexPositionColor(new Vector3(p.Position.X, p.Position.Y, 0), Color.Red)})
             //    .ToArray();
 
