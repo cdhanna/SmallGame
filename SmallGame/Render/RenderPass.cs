@@ -32,11 +32,12 @@ namespace SmallGame.Render
         public GraphicsDevice Graphics { get; protected set; }
         public RenderTarget2D Target { get; protected set; }
         public RenderPass Pass { get; protected set; }
-
+        public GameServices Services { get; protected set; }
         
 
-        public RenderArgs(RenderPass pass, RenderStrategy strategy, GraphicsDevice device, RenderTarget2D target)
+        public RenderArgs(GameServices services, RenderPass pass, RenderStrategy strategy, GraphicsDevice device, RenderTarget2D target)
         {
+            Services = services;
             Pass = pass;
             Strategy = strategy;
             Graphics = device;
@@ -49,12 +50,12 @@ namespace SmallGame.Render
     {
         public new P Pass { get; private set; }
 
-        public RenderArgs(P pass, RenderArgs args) : this(pass, args.Strategy, args.Graphics, args.Target)
+        public RenderArgs(P pass, RenderArgs args) : this(pass, args.Services, args.Strategy, args.Graphics, args.Target)
         {
         }
 
-        public RenderArgs(P pass, RenderStrategy strategy, GraphicsDevice device, RenderTarget2D target)
-            : base(pass, strategy, device, target)
+        public RenderArgs(P pass, GameServices services, RenderStrategy strategy, GraphicsDevice device, RenderTarget2D target)
+            : base(services, pass, strategy, device, target)
         {
             Pass = pass;
         }
@@ -90,7 +91,7 @@ namespace SmallGame.Render
         public override void Render(RenderStrategy strategy)
         {
             Graphics.SetRenderTarget(Output);
-            var args = new RenderArgs<T>((T)this, strategy, Graphics, Output);
+            var args = new RenderArgs<T>((T)this, Services, strategy, Graphics, Output);
             OnRender(strategy, RenderActions, args);
         }
 

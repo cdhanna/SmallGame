@@ -53,12 +53,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MathExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rendering\Bloom\BloomComponent.cs" />
     <Compile Include="Rendering\Bloom\BloomSettings.cs" />
     <Compile Include="Rendering\CameraBloomStrategy.cs" />
     <Compile Include="Rendering\SimpleBloomStrategy.cs" />
     <Compile Include="Rendering\ScreenBloomPass.cs" />
+    <Compile Include="SATService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

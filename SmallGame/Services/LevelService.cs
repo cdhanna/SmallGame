@@ -13,6 +13,7 @@ namespace SmallGame.Services
         EventHandler OnLevelEnd { get; set; }
         void Configure(GameServices services);
         T SetLevel<T>(T level) where T : GameLevel;
+        T GetLevel<T>() where T : GameLevel;
         void EndLevel();
         void Update();
     }
@@ -42,6 +43,11 @@ namespace SmallGame.Services
             level.Objects.Add(_services.RenderService.ActiveCamera);
             OnLevelLoad(this, new EventArgs());
             return level;
+        }
+
+        public T GetLevel<T>() where T : GameLevel
+        {
+            return Level as T;
         }
 
         public void EndLevel()

@@ -67,6 +67,7 @@
     <Compile Include="Services\ResourceService.cs" />
     <Compile Include="Services\ScriptService.cs" />
     <Compile Include="Services\StateTracker.cs" />
+    <Compile Include="Services\StateUpdater.cs" />
     <Compile Include="Services\UpdateService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +98,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

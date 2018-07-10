@@ -12,7 +12,7 @@ namespace SmallGame.GameObjects
     /// A collection of string constants for representing GameObject state.
     /// Note that by default, a GameObject does not subscribe to update or render events. 
     /// </summary>
-    public static class GameObjectState
+    public static class GameObjectStatus
     {
         public const string New = "new";
         public const string Ok = "ok";

@@ -51,6 +51,8 @@ namespace SmallGame.Services
         /// </summary>
         public ILevelService LevelService { get { return RequestService<ILevelService>(); } }
 
+        public IStateUpdateService StateUpdator { get { return RequestService<IStateUpdateService>(); } }
+
         /// <summary>
         /// Constructs a new collection of IGameServices. 
         /// </summary>

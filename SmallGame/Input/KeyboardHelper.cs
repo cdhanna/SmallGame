@@ -171,6 +171,8 @@ namespace SmallGame.Input
         /// </summary>
         public void Update()
         {
+
+            _oldkState = _kState;
             _kState = Keyboard.GetState();
 
            
@@ -201,7 +203,6 @@ namespace SmallGame.Input
                 });
             
 
-            _oldkState = _kState;
         }
 
     }

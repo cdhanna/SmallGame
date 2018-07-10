@@ -11,6 +11,54 @@ using SmallGame.Services;
 
 namespace SmallGame.GameObjects
 {
+    public class SpriteObjectState : GameObjectState
+    {
+        private Color _color;
+        private Vector2 _scale, _offset;
+
+        public SpriteObjectState()
+        {
+            
+        }
+
+        public SpriteObjectState(SpriteObjectState clone)
+        {
+            Color = clone.Color;
+            Scale = clone.Scale;
+            Offset = clone.Offset;
+        }
+
+        public Color Color
+        {
+            get { return _color; }
+            set
+            {
+                FailIfLocked();
+                _color = value;
+            }
+        }
+
+        public Vector2 Scale
+        {
+            get { return _scale; }
+            set
+            {
+                FailIfLocked();
+                _scale = value;
+            }
+        }
+
+        public Vector2 Offset
+        {
+            get { return _offset; }
+            set
+            {
+                FailIfLocked();
+                _offset = value;
+            }
+        }
+    }
+
     /// <summary>
     /// A SpriteObject is a BasicObject that has a Texture2D and subscribes to the Render service.
     /// </summary>
@@ -21,28 +69,30 @@ namespace SmallGame.GameObjects
         /// </summary>
         public string MediaPath { get; set; }
 
-        /// <summary>
-        /// Gets or Sets the Color used to tint the sprite
-        /// </summary>
-        public Color Color { get; set; }
+        ///// <summary>
+        ///// Gets or Sets the Color used to tint the sprite
+        ///// </summary>
+        //public Color Color { get; set; }
 
-        /// <summary>
-        /// Gets or Sets the Scale of the sprite.
-        /// </summary>
-        public Vector2 Scale { get; set; }
+        ///// <summary>
+        ///// Gets or Sets the Scale of the sprite.
+        ///// </summary>
+        //public Vector2 Scale { get; set; }
 
-        /// <summary>
-        /// Gets or Sets the Offset amount for the sprite. 
-        /// </summary>
-        public Vector2 Offset
-        {
-            get { return _offset; }
-            set
-            {
-                _offsetChanged = true;
-                _offset = value;
-            }
-        }
+        ///// <summary>
+        ///// Gets or Sets the Offset amount for the sprite. 
+        ///// </summary>
+        //public Vector2 Offset
+        //{
+        //    get { return _offset; }
+        //    set
+        //    {
+        //        _offsetChanged = true;
+        //        _offset = value;
+        //    }
+        //}
+
+        public SpriteObjectState InitialState { get; private set; }
 
         public bool OnCamera { get; set; }
 
@@ -56,13 +106,15 @@ namespace SmallGame.GameObjects
         /// </summary>
         public SpriteObject()
         {
-            Color = Color.White;
-            Scale = Vector2.One;
-            _offset = Vector2.Zero;
+            InitialState = new SpriteObjectState()
+            {
+                Color = Color.White,
+                Scale = Vector2.One,
+                Offset = Vector2.Zero
+            };
+          
             OnCamera = false;
         }
-
-        
 
         /// <summary>
         /// Inits the SpriteObject. Unless set in JSON data or earlier, the Offset property will be set to the center of the image
@@ -71,10 +123,10 @@ namespace SmallGame.GameObjects
         protected override void OnInit(GameServices services)
         {
             _tex = services.ResourceService.Load<Texture2D>(MediaPath);
-            if (!_offsetChanged)
-            {
-                Offset = new Vector2(_tex.Width, _tex.Height) / 2;    
-            }
+            //if (!_offsetChanged)
+            //{
+            InitialState.Offset = new Vector2(_tex.Width, _tex.Height) / 2;    
+            //}
             
             //services.RenderService.OnRender += Render;
 
@@ -103,7 +155,19 @@ namespace SmallGame.GameObjects
 
         protected virtual void OnRender(RenderArgs<SimpleSpritePass> args)
         {
-            args.Pass.SpriteBatch.Draw(_tex, Position, null, Color, Angle, Offset, Scale, SpriteEffects.None, 0f);  
+
+            var objState = args.Services.StateUpdator.Get<BasicObjectState>(this);
+            var sprState = args.Services.StateUpdator.Get<SpriteObjectState>(this);
+
+            args.Pass.SpriteBatch.Draw(_tex, 
+                objState.Position,
+                null,
+                sprState.Color,
+                objState.Angle,
+                sprState.Offset,
+                sprState.Scale,
+                SpriteEffects.None,
+                0f);  
         }
 
     }

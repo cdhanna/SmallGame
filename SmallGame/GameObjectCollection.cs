@@ -38,7 +38,6 @@ namespace SmallGame
             Objects[obj.Type].Add(obj);
         }
 
-
         //public List<GameObject> GetAll()
         //{
         //    var gobs = new List<GameObject>();
